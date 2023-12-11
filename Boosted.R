@@ -13,11 +13,11 @@ setwd("C:/Users/davis/OneDrive - Brigham Young University/Documents/skool/new/st
 
 set.seed(1)
 train <- vroom("train.csv")
-train <- train[sort(sample(1:nrow(train), 5000, replace = FALSE)),]
+train <- train[sort(sample(1:nrow(train), 10000, replace = FALSE)),]
 test <- vroom("test.csv")
 
 recipe <- recipe(loss ~ ., data = train) %>%
-  step_rm(cat15, cat20, cat21, cat22, cat31, cat34, cat35, cat39, cat46, cat47) %>%
+  step_rm(id, cat15, cat20, cat21, cat22, cat31, cat34, cat35, cat39, cat46, cat47) %>%
   step_rm(cat48, cat55, cat56, cat58, cat59, cat60, cat61, cat62, cat63, cat64) %>%
   step_rm(cat67, cat68, cat69, cat70, cat74, cat77, cat78, cat93, cat115) %>%
   step_lencode_mixed(all_nominal_predictors(), outcome = vars(loss)) %>%
